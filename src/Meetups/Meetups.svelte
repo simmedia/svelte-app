@@ -1,6 +1,7 @@
 <script>
   import MeetupItem from "./MeetupItem.svelte";
-  import TextInput from "./components/TextInput.svelte";
+  import TextInput from "../components/TextInput.svelte";
+  import Button from "../components/Button.svelte";
 
   let title = "";
   let subtitle = "";
@@ -102,7 +103,7 @@
       value={description}
       controlType="textarea"
       on:input={event => (description = event.target.value)} />
-    <input type="submit" value="Submit" />
+    <Button type="submit" caption="Save" />
   </form>
 </div>
 

@@ -1,4 +1,6 @@
 <script>
+  import Button from '../components/Button.svelte'
+
   export let title;
   export let subtitle;
   export let imageUrl;
@@ -54,10 +56,10 @@
     <p>{description}</p>
   </div>
   <footer>
-    <a href="mailto:{email}">Contact</a>
+    <Button href="mailto:{email}" caption="Contact" />
     <div class="actions">
-      <button>Show Details</button>
-      <button>Favorite</button>
+      <Button caption="Show Details" />
+      <Button caption="Favorite" />
     </div>
   </footer>
 </article>

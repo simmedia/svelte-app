@@ -9,7 +9,7 @@
   import Meetups from "./Meetups/Meetups.svelte";
 
 
-  export let url = "";
+  // export let url = "";
 
 
 </script>
