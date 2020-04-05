@@ -6,7 +6,12 @@
   import About from "./pages/About.svelte";
   import Contact from "./pages/Contact.svelte";
 
+  import Meetups from "./Meetups/Meetups.svelte";
+
+
   export let url = "";
+
+
 </script>
 
 <style>
@@ -27,9 +32,7 @@
 
 <Header />
 <div class="container">
-  <Router {url}>
-    <Route path="/" component={Home} />
-    <Route path="about" component={About} />
-    <Route path="contact" component={Contact} />
-  </Router>
+
+ 
+  <Meetups />
 </div>

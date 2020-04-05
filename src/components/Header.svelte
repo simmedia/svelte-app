@@ -3,6 +3,7 @@
 
   let navLinks = [
     { name: "Home", path: "/" },
+    { name: "Meetups", path: "/meetups" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" }
   ];
