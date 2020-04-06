@@ -1,15 +1,10 @@
 <script>
-  import { Router, Route } from "svelte-routing";
-
-  import Header from "./components/Header.svelte";
+  import Header from "./UI/Header.svelte";
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
   import Contact from "./pages/Contact.svelte";
 
   import Meetups from "./Meetups/Meetups.svelte";
-
-
-  // export let url = "";
 
 
 </script>
@@ -32,7 +27,5 @@
 
 <Header />
 <div class="container">
-
- 
-  <Meetups />
+ <Meetups />
 </div>

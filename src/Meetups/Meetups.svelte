@@ -1,8 +1,9 @@
 <script>
+
   import MeetupItem from "./MeetupItem.svelte";
-  import TextInput from "../components/TextInput.svelte";
-  import Button from "../components/Button.svelte";
-  import EditMeetup from "../components/EditMeetup.svelte";
+  import TextInput from "../UI/TextInput.svelte";
+  import Button from "../UI/Button.svelte";
+  import EditMeetup from "./EditMeetup.svelte";
 
   let meetups = [
     {
@@ -43,7 +44,7 @@
       imageUrl: event.detail.imageUrl
     };
     meetups = [newMeetup, ...meetups];
-    editMode = null
+    editMode = null;
   }
 
   function toggleFavorite(event) {
@@ -85,14 +86,12 @@
 </style>
 
 <div class="add-meetup">
-  <Button
-    caption="New Meetup"
-    on:click={() => (editMode = 'add')} />
+  <Button caption="New Meetup" on:click={() => (editMode = 'add')} />
 </div>
 {#if editMode === 'add'}
   <EditMeetup on:cancel={cancelEdit} on:save={addMeetup} />
 {/if}
-<section id="meetups">
+<section  id="meetups">
   {#each meetups as meetup}
     <MeetupItem
       id={meetup.id}

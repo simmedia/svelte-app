@@ -1,8 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import TextInput from "../components/TextInput.svelte";
-  import Button from "../components/Button.svelte";
-  import Modal from "../components/Modal.svelte";
+  import TextInput from "../UI/TextInput.svelte";
+  import Button from "../UI/Button.svelte";
+  import Modal from "../UI/Modal.svelte";
 
   const dispatch = createEventDispatcher();
 

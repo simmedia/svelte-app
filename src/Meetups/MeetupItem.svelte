@@ -1,6 +1,7 @@
 <script>
+  import { fade } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
-  import Button from "../components/Button.svelte";
+  import Button from "../UI/Button.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -23,13 +24,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
-    transform: translateY(-20px);
     box-shadow: 0.1rem 0.2rem 0.5rem #b6b6b6;
-    animation: slide-in .3s ease;
-  }
-
-  @keyframes slide-in {
-    to {transform: translateY(0px)}
   }
   .image {
     width: 350px;
@@ -69,7 +64,7 @@
   }
 </style>
 
-<article>
+<article transition:fade>
   <header>
     <h1>{title}</h1>
     <h2>{subtitle}</h2>
@@ -82,7 +77,11 @@
     <p>{description}</p>
   </div>
   <footer>
-    <Button mode="btn" color="outline" href="mailto:{email}" caption="Contact" />
+    <Button
+      mode="btn"
+      color="outline"
+      href="mailto:{email}"
+      caption="Contact" />
     <Button color="primary" caption="Details" />
     <Button
       mode="btn"
