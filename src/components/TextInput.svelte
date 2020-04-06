@@ -8,9 +8,10 @@
 </script>
 
 <style>
-.form-control input {
+.form-control input, textarea {
  padding: 5px;
  border-radius: 5px;
+ width: 100%;
 }
 </style>
 

@@ -9,7 +9,7 @@
 <style>
   .btn {
     cursor: pointer;
-    width: 120px;
+    width: 110px;
     color: #fff;
     outline: none;
     border: none;
@@ -29,6 +29,7 @@
   .outline {
       border: 1px solid #ccc;
       background: transparent;
+      color: #444;
   }
   .success {
     background: #71e671;
@@ -36,15 +37,18 @@
   .error {
     background: #e96767;
   }
-  a {
-      color: #444;
+  a button {
+      color: #444 !important;
   }
 </style>
 
 {#if href}
-  <button class="{mode} {color}">
-    <a {href}>{caption}</a>
-  </button>
+    <a {href}>
+      <button class="{mode} {color}">
+        {caption}
+      </button>
+    </a>
+  
 {:else}
   <button class="{mode} {color}" {type} on:click>{caption}</button>
 {/if}

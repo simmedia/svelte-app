@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import TextInput from "../components/TextInput.svelte";
   import Button from "../components/Button.svelte";
+  import Modal from "../components/Modal.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -22,12 +23,17 @@
           imageUrl: imageUrl
       })
   }
+  function cancel() {
+      dispatch('cancel')
+  }
 </script>
 
 <style>
 
 </style>
 
+
+<Modal on:cancel title="Edit Meetup Data">
 <form on:submit|preventDefault={submitForm}>
   <TextInput
     id="title"
@@ -61,5 +67,11 @@
     value={description}
     controlType="textarea"
     on:input={event => (description = event.target.value)} />
-  <Button type="submit" caption="Save" />
+
 </form>
+
+    <div name="footer">
+     <Button type="button" on:click={submitForm} caption="Save" />
+     <Button mode='btn outline' type="button" on:click={cancel} caption="Cancel" />
+  </div>
+</Modal>

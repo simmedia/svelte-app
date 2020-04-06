@@ -23,13 +23,21 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
+    transform: translateY(-20px);
     box-shadow: 0.1rem 0.2rem 0.5rem #b6b6b6;
+    animation: slide-in .3s ease;
+  }
+
+  @keyframes slide-in {
+    to {transform: translateY(0px)}
   }
   .image {
     width: 350px;
     height: 200px;
     overflow: hidden;
     margin-bottom: 20px;
+    display: flex;
+    place-items: center;
   }
   .image img {
     width: 100%;
@@ -46,6 +54,10 @@
     height: 5rem;
     border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
+    overflow: hidden;
+  }
+  p {
+    margin-bottom: 10px;
   }
   .content p {
     font-size: 1.2rem;
@@ -71,7 +83,7 @@
   </div>
   <footer>
     <Button mode="btn" color="outline" href="mailto:{email}" caption="Contact" />
-    <Button color="primary" caption="Show Details" />
+    <Button color="primary" caption="Details" />
     <Button
       mode="btn"
       color={isFav ? 'error' : 'success'}

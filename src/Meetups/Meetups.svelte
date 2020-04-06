@@ -55,6 +55,10 @@
     updatedMeetups[meetupIndex] = updatedMeetup;
     meetups = updatedMeetups;
   }
+
+  function cancelEdit() {
+    editMode = false;
+  }
 </script>
 
 <style>
@@ -86,7 +90,7 @@
     on:click={() => (editMode = 'add')} />
 </div>
 {#if editMode === 'add'}
-  <EditMeetup on:save={addMeetup} />
+  <EditMeetup on:cancel={cancelEdit} on:save={addMeetup} />
 {/if}
 <section id="meetups">
   {#each meetups as meetup}
