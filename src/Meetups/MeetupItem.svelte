@@ -1,12 +1,17 @@
 <script>
-  import Button from '../components/Button.svelte'
+  import { createEventDispatcher } from "svelte";
+  import Button from "../components/Button.svelte";
 
+  const dispatch = createEventDispatcher();
+
+  export let id;
   export let title;
   export let subtitle;
   export let imageUrl;
   export let description;
   export let address;
   export let email;
+  export let isFav;
 </script>
 
 <style>
@@ -14,7 +19,6 @@
     padding: 20px 30px;
     min-width: 350px;
     overflow: hidden;
-    margin-right: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -22,15 +26,26 @@
     box-shadow: 0.1rem 0.2rem 0.5rem #b6b6b6;
   }
   .image {
-    height: 300px;
+    width: 350px;
+    height: 200px;
     overflow: hidden;
+    margin-bottom: 20px;
   }
   .image img {
     width: 100%;
   }
-  header h1,
+  header h1 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
   header h2 {
-    margin-bottom: 10px;
+    padding: 10px 0px;
+  }
+  .content {
+    height: 5rem;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
   }
   .content p {
     font-size: 1.2rem;
@@ -38,14 +53,13 @@
   }
   footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 </style>
 
 <article>
   <header>
     <h1>{title}</h1>
-    <hr />
     <h2>{subtitle}</h2>
     <p>{address}</p>
   </header>
@@ -56,10 +70,13 @@
     <p>{description}</p>
   </div>
   <footer>
-    <Button href="mailto:{email}" caption="Contact" />
-    <div class="actions">
-      <Button caption="Show Details" />
-      <Button caption="Favorite" />
-    </div>
+    <Button mode="btn" color="outline" href="mailto:{email}" caption="Contact" />
+    <Button color="primary" caption="Show Details" />
+    <Button
+      mode="btn"
+      color={isFav ? 'error' : 'success'}
+      caption={isFav ? 'Unfavorite' : 'Favorite'}
+      on:click={() => dispatch('togglefavorite', id)} />
+
   </footer>
 </article>

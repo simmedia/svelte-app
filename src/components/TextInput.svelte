@@ -1,14 +1,17 @@
 <script>
-  export let controlType;
+  export let controlType = null;
   export let id;
   export let label;
-  export let rows;
+  export let rows = null;
   export let value;
-  export let type;
+  export let type = 'text';
 </script>
 
 <style>
-
+.form-control input {
+ padding: 5px;
+ border-radius: 5px;
+}
 </style>
 
 <div class="form-control">
@@ -16,6 +19,6 @@
   {#if controlType === 'textarea'}
     <textarea {rows} type="text" {id} {value} on:input />
   {:else}
-    <input type="{type}" {id} {value} on:input />
+    <input required type="{type}" {id} {value} on:input />
   {/if}
 </div>

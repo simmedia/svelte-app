@@ -2,13 +2,7 @@
   import MeetupItem from "./MeetupItem.svelte";
   import TextInput from "../components/TextInput.svelte";
   import Button from "../components/Button.svelte";
-
-  let title = "";
-  let subtitle = "";
-  let address = "";
-  let email = "";
-  let description = "";
-  let imageUrl = "";
+  import EditMeetup from "../components/EditMeetup.svelte";
 
   let meetups = [
     {
@@ -20,7 +14,8 @@
       imageUrl:
         "https://www.wraltechwire.com/wp-content/uploads/2019/09/networking-meetup-stock-photo-627x376.jpg",
       address: "27th Nerd Road, 12323 New York",
-      contactEmail: "test@meetups.com"
+      contactEmail: "test@meetups.com",
+      isFavorite: false
     },
     {
       id: "m2",
@@ -30,21 +25,35 @@
       imageUrl:
         "https://www.southwestjournal.com/wp-content/uploads/2019/09/46-pool.jpg",
       address: "Fith South Road, 12323 New York",
-      contactEmail: "swim@poolside.com"
+      contactEmail: "swim@poolside.com",
+      isFavorite: false
     }
   ];
 
-  function addMeetup() {
+  let editMode = null;
+
+  function addMeetup(event) {
     const newMeetup = {
       id: Math.random().toString(),
-      title: title,
-      subtitle: subtitle,
-      description: description,
-      address: address,
-      contactEmail: email,
-      imageUrl: imageUrl
+      title: event.detail.title,
+      subtitle: event.detail.subtitle,
+      description: event.detail.description,
+      address: event.detail.address,
+      contactEmail: event.detail.email,
+      imageUrl: event.detail.imageUrl
     };
     meetups = [newMeetup, ...meetups];
+    editMode = null
+  }
+
+  function toggleFavorite(event) {
+    const id = event.detail;
+    const updatedMeetup = { ...meetups.find(m => m.id === id) };
+    updatedMeetup.isFavorite = !updatedMeetup.isFavorite;
+    const meetupIndex = meetups.findIndex(m => m.id === id);
+    const updatedMeetups = [...meetups];
+    updatedMeetups[meetupIndex] = updatedMeetup;
+    meetups = updatedMeetups;
   }
 </script>
 
@@ -57,64 +66,39 @@
     grid-gap: 1rem;
   }
 
+  .add-meetup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   @media (min-width: 760px) {
     #meetups {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 600px;
+      grid-template-columns: repeat(3, 1fr);
+      /* grid-template-rows: 600px; */
     }
   }
 </style>
 
 <div class="add-meetup">
-  <form on:submit|preventDefault={addMeetup}>
-    <TextInput
-      id="title"
-      label="Title"
-      value={title}
-      type="text"
-      on:input={event => (title = event.target.value)} />
-    <TextInput
-      id="subtitle"
-      label="Subtitle"
-      value={subtitle}
-      type="text"
-      on:input={event => (subtitle = event.target.value)} />
-    <TextInput
-      id="address"
-      label="Address"
-      value={address}
-      type="text"
-      on:input={event => (address = event.target.value)} />
-    <TextInput
-      id="imageUrl"
-      label="Image URL"
-      value={imageUrl}
-      type="text"
-      on:input={event => (imageUrl = event.target.value)} />
-    <TextInput
-      id="email"
-      label="Contact"
-      value={email}
-      type="email"
-      on:input={event => (email = event.target.value)} />
-    <TextInput
-      id="description"
-      label="Description"
-      value={description}
-      controlType="textarea"
-      on:input={event => (description = event.target.value)} />
-    <Button type="submit" caption="Save" />
-  </form>
+  <Button
+    caption="New Meetup"
+    on:click={() => (editMode = 'add')} />
 </div>
-
+{#if editMode === 'add'}
+  <EditMeetup on:save={addMeetup} />
+{/if}
 <section id="meetups">
   {#each meetups as meetup}
     <MeetupItem
+      id={meetup.id}
       title={meetup.title}
       subtitle={meetup.subtitle}
       imageUrl={meetup.imageUrl}
       description={meetup.description}
       address={meetup.address}
-      email={meetup.contactEmail} />
+      email={meetup.contactEmail}
+      on:togglefavorite={toggleFavorite}
+      isFav={meetup.isFavorite} />
   {/each}
 </section>
