@@ -1,7 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import meetups from "./meetups-store.js";
-  import { fade } from "svelte/transition";
   import Button from "../UI/Button.svelte";
 
   const dispatch = createEventDispatcher();
@@ -18,7 +17,6 @@
   function toggleFavorite() {
     meetups.toggleFavorite(id);
   }
-
 </script>
 
 <style>
@@ -70,7 +68,7 @@
   }
 </style>
 
-<article transition:fade>
+<article>
   <header>
     <h1>{title}</h1>
     <h2>{subtitle}</h2>
@@ -86,13 +84,12 @@
     <Button
       mode="btn"
       color="outline"
-      on:click={() => dispatch('edit', id) }
+      on:click={() => dispatch('edit', id)}
       caption="Edit Meetup" />
-    <Button 
-      color="primary" 
+    <Button
+      color="primary"
       caption="Details"
-      on:click={() => dispatch('showdetails', id)}
-       />
+      on:click={() => dispatch('showdetails', id)} />
     <Button
       mode="btn"
       color={isFav ? 'error' : 'success'}

@@ -3,6 +3,8 @@
   import MeetupItem from "./MeetupItem.svelte";
   import MeetupFilter from "./MeetupFilter.svelte";
   import Button from "../UI/Button.svelte";
+  import {flip} from 'svelte/animate'
+  import {scale} from 'svelte/transition'
 
   export let meetups;
 
@@ -48,17 +50,19 @@
 </div>
 
 <section id="meetups">
-  {#each filteredMeetups as meetup}
-    <MeetupItem
-      id={meetup.id}
-      title={meetup.title}
-      subtitle={meetup.subtitle}
-      imageUrl={meetup.imageUrl}
-      description={meetup.description}
-      address={meetup.address}
-      email={meetup.contactEmail}
-      isFav={meetup.isFavorite}
-      on:showdetails
-      on:edit />
+  {#each filteredMeetups as meetup (meetup.id)}
+    <div animate:flip={{duration: 300}} transition:scale={{duration: 300}}>
+      <MeetupItem
+        id={meetup.id}
+        title={meetup.title}
+        subtitle={meetup.subtitle}
+        imageUrl={meetup.imageUrl}
+        description={meetup.description}
+        address={meetup.address}
+        email={meetup.contactEmail}
+        isFav={meetup.isFavorite}
+        on:showdetails
+        on:edit />
+    </div>
   {/each}
 </section>
