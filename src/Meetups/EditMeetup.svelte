@@ -24,9 +24,9 @@
       imageUrl: imageUrl
     };
     meetups.addMeetup(meetupData);
-    dispatch("save");
+    dispatch("cancel");
   }
-  
+
   function cancel() {
     dispatch("cancel");
   }

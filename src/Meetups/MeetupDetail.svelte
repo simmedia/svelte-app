@@ -26,7 +26,7 @@
     <h1>{selectedMeetup.title}</h1>
     <h2>{selectedMeetup.subtitle} - {selectedMeetup.address}</h2>
     <p>{selectedMeetup.description}</p>
-    <Button mode="btn" caption="Contact" type="button" />
-    <Button mode="btn outline" caption="Close" type="button" on:click={() => dispatch('close')} />
+    <Button mode="btn" caption="Contact" />
+    <Button mode="btn outline" caption="Close" on:click={() => dispatch('close')} />
   </div>
 </section>

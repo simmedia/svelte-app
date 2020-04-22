@@ -12,18 +12,21 @@
   import MeetupDetail from "./Meetups/MeetupDetail.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
 
-  let editMode = null;
+  let editMode;
   let page = "overview";
   let pageData = {};
 
+  function addMeetup(event) {
+    editMode = null;
+  }
+
   function cancelEdit() {
-    editMode = false;
+    editMode = null;
   }
 
   function showDetails(event) {
     page = "details";
     pageData.id = event.detail;
-    console.log("hello");
   }
 
   function closeDetail() {
