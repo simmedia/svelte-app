@@ -52,11 +52,7 @@
     color: #444;
   }
 
-  .add-meetup {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+
 
   .container {
     padding: 30px;
@@ -70,9 +66,6 @@
 <div class="container">
 
   {#if page === 'overview'}
-    <div class="add-meetup">
-      <Button caption="New Meetup" on:click={() => (editMode = 'edit')} />
-    </div>
     {#if editMode === 'edit'}
       <EditMeetup 
         id={editedId} 
@@ -82,6 +75,7 @@
     <MeetupGrid
       meetups={$meetups}
       on:showdetails={showDetails}
+      on:add={() => {editMode = 'edit'}}
       on:edit={startEdit} />
   {:else}
     <MeetupDetail id={pageData.id} on:close={closeDetail} />

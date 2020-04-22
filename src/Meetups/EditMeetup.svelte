@@ -106,10 +106,12 @@
       type="button"
       on:click={cancel}
       caption="Cancel" />
-    <Button
-      mode="btn outline"
-      type="button"
-      on:click={deleteMeetup}
-      caption="Delete" />
+    {#if id}
+      <Button
+        mode="btn outline"
+        type="button"
+        on:click={deleteMeetup}
+        caption="Delete" />
+    {/if}
   </div>
 </Modal>
