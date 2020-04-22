@@ -86,8 +86,8 @@
     <Button
       mode="btn"
       color="outline"
-      href="mailto:{email}"
-      caption="Contact" />
+      on:click={() => dispatch('edit', id) }
+      caption="Edit Meetup" />
     <Button 
       color="primary" 
       caption="Details"

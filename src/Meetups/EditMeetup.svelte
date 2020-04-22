@@ -5,7 +5,7 @@
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
 
-  const dispatch = createEventDispatcher();
+  export let id = null;
 
   let title = "";
   let subtitle = "";
@@ -13,6 +13,20 @@
   let email = "";
   let description = "";
   let imageUrl = "";
+
+  if (id) {
+    const unsubscribe = meetups.subscribe(items => {
+      const selectedMeetup = items.find(i => i.id === id);
+      title = selectedMeetup.title;
+      subtitle = selectedMeetup.subtitle;
+      address = selectedMeetup.address;
+      imageUrl = selectedMeetup.imageUrl;
+      email = selectedMeetup.contactEmail;
+      description = selectedMeetup.description;
+    });
+
+    unsubscribe();
+  }
 
   function submitForm() {
     const meetupData = {
@@ -23,9 +37,17 @@
       contactEmail: email,
       imageUrl: imageUrl
     };
-    meetups.addMeetup(meetupData);
-    dispatch("cancel");
+
+    if(id) {
+      meetups.updateMeetup(id, meetupData)
+    } else {
+      meetups.addMeetup(meetupData);
+
+    }
+    dispatch("save");
   }
+
+  const dispatch = createEventDispatcher();
 
   function cancel() {
     dispatch("cancel");
