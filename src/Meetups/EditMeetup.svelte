@@ -38,11 +38,10 @@
       imageUrl: imageUrl
     };
 
-    if(id) {
-      meetups.updateMeetup(id, meetupData)
+    if (id) {
+      meetups.updateMeetup(id, meetupData);
     } else {
       meetups.addMeetup(meetupData);
-
     }
     dispatch("save");
   }
@@ -51,6 +50,11 @@
 
   function cancel() {
     dispatch("cancel");
+  }
+
+  function deleteMeetup() {
+    meetups.removeMeetup(id);
+    dispatch("save");
   }
 </script>
 
@@ -102,5 +106,10 @@
       type="button"
       on:click={cancel}
       caption="Cancel" />
+    <Button
+      mode="btn outline"
+      type="button"
+      on:click={deleteMeetup}
+      caption="Delete" />
   </div>
 </Modal>
