@@ -7,24 +7,43 @@
 </script>
 
 <style>
-  .meetup-filter {
-  }
 
-  button {
-      width: 6rem;
-      border: none;
+ .btn {
+    cursor: pointer;
+    width: 110px;
+    color: #444444;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0.1rem 0.2rem 0.3rem #969696;
+    transform: translateY(0px);
+    transition: all 0.3s ease;
   }
-
-  .active {
-      background: #e96767;
-      color: #fff;
+  .btn:hover {
+    opacity: 0.7;
+  }
+  .btn:active {
+    box-shadow: 0.1rem 0.1rem 0.1rem #969696;
+    transform: translateY(2px);
+  }
+  .outline {
+      border: 1px solid #ccc;
+      background: transparent;
+      color: #444;
+  }
+  .success {
+    background: #71e671;
+  }
+  .error {
+    background: #e96767;
+    color: #ffffff;
   }
 </style>
 
 <div class="meetup-filter">
   <button
     type="button"
-    class:active={selectedButton === 0}
+    class={selectedButton === 0 ? 'btn error' : 'btn'}
     on:click={() => {
       selectedButton = 0;
       dispatch('select', 0);
@@ -33,7 +52,7 @@
   </button>
   <button
     type="button"
-    class:active={selectedButton === 1}
+    class={selectedButton === 1 ? 'btn error' : 'btn'}
     on:click={() => {
       selectedButton = 1;
       dispatch('select', 1);

@@ -18,6 +18,33 @@
   });
 </script>
 
+<style>
+section {
+  display: flex;
+  padding: 20px;
+}
+
+.content {
+  padding-left: 30px;
+  flex: 50%;
+}
+
+.image {
+  width: 50%;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+h1,h2,p {
+  margin-bottom: 20px;
+}
+</style>
+
+
+
 <section>
   <div class="image">
     <img src={selectedMeetup.imageUrl} alt={selectedMeetup.title} />
@@ -28,6 +55,6 @@
     <p>{selectedMeetup.description}</p>
     <p>{selectedMeetup.contactEmail}</p>
     <Button mode="btn" caption="Contact" />
-    <Button mode="btn outline" caption="Close" on:click={() => dispatch('close')} />
+    <Button mode="btn outline" caption="Back" on:click={() => dispatch('close')} />
   </div>
 </section>
