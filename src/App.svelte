@@ -53,7 +53,6 @@
   }
 
 
-
   .container {
     padding: 30px;
     max-width: 1366px;

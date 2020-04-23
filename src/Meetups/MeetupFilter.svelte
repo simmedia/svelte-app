@@ -11,7 +11,6 @@
  .btn {
     cursor: pointer;
     width: 110px;
-    color: #444444;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -43,7 +42,7 @@
 <div class="meetup-filter">
   <button
     type="button"
-    class={selectedButton === 0 ? 'btn error' : 'btn'}
+    class={selectedButton === 0 ? 'btn error' : 'btn outline'}
     on:click={() => {
       selectedButton = 0;
       dispatch('select', 0);
@@ -52,7 +51,7 @@
   </button>
   <button
     type="button"
-    class={selectedButton === 1 ? 'btn error' : 'btn'}
+    class={selectedButton === 1 ? 'btn error' : 'btn outline'}
     on:click={() => {
       selectedButton = 1;
       dispatch('select', 1);
