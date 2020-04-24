@@ -26,7 +26,7 @@
     transform: translateY(2px);
   }
   .outline {
-      border: 1px solid #ccc;
+      /* border: 1px solid #ccc; */
       background: transparent;
       color: #444;
   }
