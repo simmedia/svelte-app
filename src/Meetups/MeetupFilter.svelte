@@ -42,7 +42,8 @@
 <div class="meetup-filter">
   <button
     type="button"
-    class={selectedButton === 0 ? 'btn error' : 'btn outline'}
+    class="btn outline"
+    class:error={selectedButton === 0}
     on:click={() => {
       selectedButton = 0;
       dispatch('select', 0);
@@ -51,7 +52,8 @@
   </button>
   <button
     type="button"
-    class={selectedButton === 1 ? 'btn error' : 'btn outline'}
+    class="btn outline"
+    class:error={selectedButton === 1}
     on:click={() => {
       selectedButton = 1;
       dispatch('select', 1);
