@@ -3,9 +3,9 @@
 
   let currentLink = "Home";
   let navLinks = [
-    { name: "Home"},
-    { name: "Meetups"},
-    { name: "About"},
+    { name: "Home" },
+    { name: "Meetups" },
+    { name: "About" },
     { name: "Contact" }
   ];
 </script>
@@ -13,8 +13,7 @@
 <style>
   header {
     width: 100%;
-    padding: 30px;
-    box-shadow: 0rem 0.2rem 0.5rem #cecece;
+    border-bottom: 1px solid #ebcaca;
   }
   .logo {
     font-size: 1.3rem;
@@ -25,15 +24,18 @@
     max-width: 1306px;
     margin: auto;
     display: flex;
+    height: 64.5px;
     justify-content: space-between;
+    align-items: center;
   }
 
   nav a {
-    margin-left: 30px;
+    padding: 20px;
     color: #444;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    border-bottom: 2px solid transparent;
   }
   nav a:hover {
     text-decoration: none;
@@ -41,6 +43,7 @@
   }
   .active {
     color: #ff6e6e;
+    border-bottom: 2px solid #ff6e6e;
   }
 </style>
 
