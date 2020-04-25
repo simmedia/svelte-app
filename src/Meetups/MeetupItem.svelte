@@ -15,7 +15,18 @@
   export let isFav;
 
   function toggleFavorite() {
-    meetups.toggleFavorite(id);
+    fetch(`https://svelte-app-1d18d.firebaseio.com/meetups/${id}.json`, {
+      method: "PATCH",
+      body: JSON.stringify({ isFavorite: !isFav }),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("An error occurred, please try again!");
+        }
+        meetups.toggleFavorite(id);
+      })
+      .catch(err => console.log(err));
   }
 </script>
 
@@ -82,15 +93,15 @@
   </div>
   <footer>
     <Button
-      class="btn outline"
+      mode="btn outline"
       on:click={() => dispatch('edit', id)}
       caption="Edit Meetup" />
     <Button
-      class="btn primary"
+      mode="btn primary"
       caption="Details"
       on:click={() => dispatch('showdetails', id)} />
     <Button
-      class="btn"
+      mode="btn"
       color={isFav ? 'error' : 'success'}
       caption={isFav ? 'Unfavorite' : 'Favorite'}
       on:click={toggleFavorite} />

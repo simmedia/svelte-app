@@ -18,6 +18,7 @@
     box-shadow: 0.1rem 0.2rem 0.3rem #969696;
     transform: translateY(0px);
     transition: all 0.3s ease;
+    margin-right: 5px;
   }
   .btn:hover {
     opacity: 0.7;
