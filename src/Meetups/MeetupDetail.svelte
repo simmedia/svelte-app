@@ -54,7 +54,7 @@ h1,h2,p {
     <h2>{selectedMeetup.subtitle} - {selectedMeetup.address}</h2>
     <p>{selectedMeetup.description}</p>
     <p>{selectedMeetup.contactEmail}</p>
-    <Button mode="btn" caption="Contact" />
-    <Button mode="btn outline" caption="Back" on:click={() => dispatch('close')} />
+    <Button class="btn" caption="Contact" />
+    <Button class="btn outline" caption="Back" on:click={() => dispatch('close')} />
   </div>
 </section>

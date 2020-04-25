@@ -31,7 +31,7 @@
     box-shadow: 0.1rem 0.2rem 0.5rem #b6b6b6;
   }
   .image {
-    width: 350px;
+    width: 300px;
     height: 200px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -82,16 +82,15 @@
   </div>
   <footer>
     <Button
-      mode="btn"
-      color="outline"
+      class="btn outline"
       on:click={() => dispatch('edit', id)}
       caption="Edit Meetup" />
     <Button
-      color="primary"
+      class="btn primary"
       caption="Details"
       on:click={() => dispatch('showdetails', id)} />
     <Button
-      mode="btn"
+      class="btn"
       color={isFav ? 'error' : 'success'}
       caption={isFav ? 'Unfavorite' : 'Favorite'}
       on:click={toggleFavorite} />
