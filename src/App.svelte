@@ -1,4 +1,7 @@
 <script>
+  import { Router } from "@sveltech/routify";
+  import { routes } from "@sveltech/routify/tmp/routes";
+
   import Header from "./UI/Header.svelte";
   import Home from "./pages/Home.svelte";
   import About from "./pages/About.svelte";
@@ -19,21 +22,22 @@
 
   fetch("https://svelte-app-1d18d.firebaseio.com/meetups.json")
     .then(res => {
-      if(!res.ok) {
-        throw new Error('Fetching meetups failed!')
+      if (!res.ok) {
+        throw new Error("Fetching meetups failed!");
       }
-      return res.json()
-    }).then(data => {
-      const loadedMeetups = []
-      for(const key in data) {
+      return res.json();
+    })
+    .then(data => {
+      const loadedMeetups = [];
+      for (const key in data) {
         loadedMeetups.push({
           ...data[key],
           id: key
-        })
+        });
       }
-      meetups.setMeetups(loadedMeetups.reverse())
+      meetups.setMeetups(loadedMeetups.reverse());
     })
-    .catch(err=> console.log(err));
+    .catch(err => console.log(err));
 
   function savedMeetup(event) {
     editMode = null;
@@ -70,7 +74,6 @@
     color: #444;
   }
 
-
   .container {
     padding: 30px;
     max-width: 1366px;
@@ -80,20 +83,20 @@
 
 <Header />
 
+<!-- <Router {routes} /> -->
 
 <div class="container">
 
   {#if page === 'overview'}
     {#if editMode === 'edit'}
-      <EditMeetup 
-        id={editedId} 
-        on:save={savedMeetup} 
-        on:cancel={cancelEdit} />
+      <EditMeetup id={editedId} on:save={savedMeetup} on:cancel={cancelEdit} />
     {/if}
     <MeetupGrid
       meetups={$meetups}
       on:showdetails={showDetails}
-      on:add={() => {editMode = 'edit'}}
+      on:add={() => {
+        editMode = 'edit';
+      }}
       on:edit={startEdit} />
   {:else}
     <MeetupDetail id={pageData.id} on:close={closeDetail} />

@@ -16,6 +16,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@sveltech/routify": "^1.6.0",
     "cleave.js": "^1.5.8",
     "history": "^4.10.1",
     "moment": "^2.24.0",

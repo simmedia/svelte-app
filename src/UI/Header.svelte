@@ -1,49 +1,53 @@
 <script>
-  import { links } from "svelte-routing";
+  import { url, isActive } from "@sveltech/routify";
 
-  let currentLink = "Home";
-  let navLinks = [
-    { name: "Home" },
-    { name: "Meetups" },
-    { name: "About" },
-    { name: "Contact" }
-  ];
+  const links = [["./index", "home"], ["./about", "about"], ["./blog", "blog"]];
 </script>
 
 <style>
-  header {
-    width: 100%;
-    border-bottom: 1px solid #ebcaca;
-  }
-  .logo {
-    font-size: 1.3rem;
-    color: #444;
-    font-weight: 700;
-  }
-  header .container {
-    max-width: 1306px;
-    margin: auto;
-    display: flex;
-    height: 64.5px;
-    justify-content: space-between;
-    align-items: center;
+
+  nav {
+    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
+    font-weight: 300;
+    padding: 0 1em;
   }
 
-  nav a {
-    padding: 20px;
-    color: #444;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
+  ul {
+    margin: 0;
+    padding: 0;
   }
-  nav a:hover {
+
+  /* clearfix */
+  ul::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  li {
+    display: block;
+    float: left;
+  }
+
+  .selected {
+    position: relative;
+    display: inline-block;
+  }
+
+  .selected::after {
+    position: absolute;
+    content: "";
+    width: calc(100% - 1em);
+    height: 2px;
+    background-color: rgb(255, 62, 0);
+    display: block;
+    bottom: -1px;
+  }
+
+  a {
     text-decoration: none;
-    opacity: 0.7;
-  }
-  .active {
-    color: #ff6e6e;
-    border-bottom: 2px solid #ff6e6e;
+    padding: 1em 0.5em;
+    display: block;
   }
 </style>
 
@@ -53,15 +57,13 @@
       <span>simmedia</span>
     </div>
     <nav>
-      {#each navLinks as link}
-        <a
-          use:links
-          href={link.path}
-          class:active={currentLink === link.name}
-          on:click={() => (currentLink = link.name)}>
-          {link.name}
-        </a>
-      {/each}
+      <ul>
+        {#each links as [path, name]}
+          <li>
+            <a href={$url(path)} class:selected={$isActive(path)}>{name}</a>
+          </li>
+        {/each}
+      </ul>
     </nav>
   </div>
 </header>
